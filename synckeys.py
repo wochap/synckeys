@@ -160,31 +160,75 @@ def process_advanced_pairing(adapter_config, adapter_mac, device_mac):
 
     if 'LTK' in adapter_config:
         ltk = format_hex(adapter_config['LTK'])
-        current_ltk = paired_config['LongTermKey']['Key']
-        # preemptively setting the final value in the config, but not persisting
-        paired_config['LongTermKey']['Key'] = ltk
-        require_update |= print_update_values('LongTermKey', ltk, current_ltk)
+        if 'LongTermKey' in paired_config:
+            current_ltk = paired_config['LongTermKey']['Key']
+            # preemptively setting the final value in the config, but not persisting
+            paired_config['LongTermKey']['Key'] = ltk
+            require_update |= print_update_values('LongTermKey', ltk, current_ltk)
+        if 'SlaveLongTermKey' in paired_config:
+            current_ltk = paired_config['SlaveLongTermKey']['Key']
+            # preemptively setting the final value in the config, but not persisting
+            paired_config['SlaveLongTermKey']['Key'] = ltk
+            require_update |= print_update_values('SlaveLongTermKey', ltk, current_ltk)
+        if 'PeripheralLongTermKey' in paired_config:
+            current_ltk = paired_config['PeripheralLongTermKey']['Key']
+            # preemptively setting the final value in the config, but not persisting
+            paired_config['PeripheralLongTermKey']['Key'] = ltk
+            require_update |= print_update_values('PeripheralLongTermKey', ltk, current_ltk)
 
     if 'KeyLength' in adapter_config:
         ltk_key_length = str(int(format_dword(adapter_config['KeyLength']), 16))
-        current_ltk_key_length = paired_config['LongTermKey']['EncSize']
-        # preemptively setting the final value in the config, but not persisting
-        paired_config['LongTermKey']['EncSize'] = ltk_key_length
-        require_update |= print_update_values('  EncSize', ltk_key_length, current_ltk_key_length)
+        if 'LongTermKey' in paired_config:
+            current_ltk_key_length = paired_config['LongTermKey']['EncSize']
+            # preemptively setting the final value in the config, but not persisting
+            paired_config['LongTermKey']['EncSize'] = ltk_key_length
+            require_update |= print_update_values('  EncSize', ltk_key_length, current_ltk_key_length)
+        if 'SlaveLongTermKey' in paired_config:
+            current_ltk_key_length = paired_config['SlaveLongTermKey']['EncSize']
+            # preemptively setting the final value in the config, but not persisting
+            paired_config['SlaveLongTermKey']['EncSize'] = ltk_key_length
+            require_update |= print_update_values('  EncSize', ltk_key_length, current_ltk_key_length)
+        if 'PeripheralLongTermKey' in paired_config:
+            current_ltk_key_length = paired_config['PeripheralLongTermKey']['EncSize']
+            # preemptively setting the final value in the config, but not persisting
+            paired_config['PeripheralLongTermKey']['EncSize'] = ltk_key_length
+            require_update |= print_update_values('  EncSize', ltk_key_length, current_ltk_key_length)
 
     if 'EDIV' in adapter_config:
         ltk_ediv = str(int(format_dword(adapter_config['EDIV']), 16))
-        current_ltk_ediv = paired_config['LongTermKey']['EDiv']
-        # preemptively setting the final value in the config, but not persisting
-        paired_config['LongTermKey']['EDiv'] = ltk_ediv
-        require_update |= print_update_values('  EDiv', ltk_ediv, current_ltk_ediv)
+        if 'LongTermKey' in paired_config:
+            current_ltk_ediv = paired_config['LongTermKey']['EDiv']
+            # preemptively setting the final value in the config, but not persisting
+            paired_config['LongTermKey']['EDiv'] = ltk_ediv
+            require_update |= print_update_values('  EDiv', ltk_ediv, current_ltk_ediv)
+        if 'SlaveLongTermKey' in paired_config:
+            current_ltk_ediv = paired_config['SlaveLongTermKey']['EDiv']
+            # preemptively setting the final value in the config, but not persisting
+            paired_config['SlaveLongTermKey']['EDiv'] = ltk_ediv
+            require_update |= print_update_values('  EDiv', ltk_ediv, current_ltk_ediv)
+        if 'PeripheralLongTermKey' in paired_config:
+            current_ltk_ediv = paired_config['PeripheralLongTermKey']['EDiv']
+            # preemptively setting the final value in the config, but not persisting
+            paired_config['PeripheralLongTermKey']['EDiv'] = ltk_ediv
+            require_update |= print_update_values('  EDiv', ltk_ediv, current_ltk_ediv)
 
     if 'ERand' in adapter_config:
         ltk_erand = str(int(format_hex_b(adapter_config['ERand']), 16))
-        current_ltk_erand = paired_config['LongTermKey']['Rand']
-        # preemptively setting the final value in the config, but not persisting
-        paired_config['LongTermKey']['Rand'] = ltk_erand
-        require_update |= print_update_values('  Rand', ltk_erand, current_ltk_erand)
+        if 'LongTermKey' in paired_config:
+            current_ltk_erand = paired_config['LongTermKey']['Rand']
+            # preemptively setting the final value in the config, but not persisting
+            paired_config['LongTermKey']['Rand'] = ltk_erand
+            require_update |= print_update_values('  Rand', ltk_erand, current_ltk_erand)
+        if 'SlaveLongTermKey' in paired_config:
+            current_ltk_erand = paired_config['SlaveLongTermKey']['Rand']
+            # preemptively setting the final value in the config, but not persisting
+            paired_config['SlaveLongTermKey']['Rand'] = ltk_erand
+            require_update |= print_update_values('  Rand', ltk_erand, current_ltk_erand)
+        if 'PeripheralLongTermKey' in paired_config:
+            current_ltk_erand = paired_config['PeripheralLongTermKey']['Rand']
+            # preemptively setting the final value in the config, but not persisting
+            paired_config['PeripheralLongTermKey']['Rand'] = ltk_erand
+            require_update |= print_update_values('  Rand', ltk_erand, current_ltk_erand)
 
     if not require_update:
         return
